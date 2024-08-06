@@ -6,7 +6,6 @@ import { getVideoSources } from './src/eporner/Resolver.js';
 import { getSearchResults } from './src/eporner/Search.js';
 import { getVideoDetails } from './src/eporner/MediaDetails.js';
 import { fetchSources } from './src/flixhq/flixhq.js';
-import { getmovie, getserie } from './src/vidsrc/vidsrcto.js';
 import { VidSrcExtractor, VidSrcExtractor2  } from './src/vidsrcme/vidsrcme.js';
 
 const app = fastify();
