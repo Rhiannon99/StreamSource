@@ -7,7 +7,7 @@ import { getSearchResults } from './src/eporner/Search.js';
 import { getVideoDetails } from './src/eporner/MediaDetails.js';
 import { fetchSources } from './src/flixhq/flixhq.js';
 import { getmovie, getserie } from './src/vidsrc/vidsrcto.js';
-import { VidSrcExtractor, VidSrcExtractor2  } from './src/vidsrcme/vidsrcme.js';
+import { VidSrcExtractor, VidSrcExtractor2 } from './src/vidsrcme/vidsrcme.js';
 
 const app = fastify();
 
@@ -33,8 +33,6 @@ app.get('/vidsrc', async (request, reply) => {
     const per_page = request.query.per_page || '30';
     const page = request.query.page || '1';
     const order = request.query.order || 'latest';
-    const gay = request.query.gay || '0';
-    const lq = request.query.gay || '1';
     const cats = request.query.cats || null;
     const type = request.query.type || null;
 
@@ -176,7 +174,7 @@ app.get('/vidsrc', async (request, reply) => {
     };
 
 
-    const fetchEporner = async (id, thumbsize, resolve, search, per_page, page, order, gay, lq) => {
+    const fetchEporner = async (id, thumbsize, resolve, search, per_page, page, order) => {
         if (id) {
             const getDetails = await getVideoDetails(id, thumbsize);
             if (getDetails === null) {
@@ -206,7 +204,7 @@ app.get('/vidsrc', async (request, reply) => {
         }
 
         if (search) {
-            const getResults = await getSearchResults(search, per_page, page, thumbsize, order, gay, lq);
+            const getResults = await getSearchResults(search, per_page, page, thumbsize, order);
             if (getResults === null) {
                 reply.status(404).send({
                     status: 404,
@@ -245,10 +243,9 @@ app.get('/vidsrc', async (request, reply) => {
         if (cats) {
             await fetchEpornerCats();
         } else {
-            await fetchEporner(id, thumbsize, resolve, search, per_page, page, order, gay, lq);
+            await fetchEporner(id, thumbsize, resolve, search, per_page, page, order);
         }
-    }
-    else {
+    } else {
         return reply.status(400).send({ message: 'Invalid provider specified' });
     }
 });
