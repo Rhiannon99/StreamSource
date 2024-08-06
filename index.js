@@ -1,10 +1,6 @@
 import 'dotenv/config';
 import fastify from 'fastify';
 import { META } from '@consumet/extensions';
-import { getEPORN_CATEGORIES } from './src/eporner/Categories.js';
-import { getVideoSources } from './src/eporner/Resolver.js';
-import { getSearchResults } from './src/eporner/Search.js';
-import { getVideoDetails } from './src/eporner/MediaDetails.js';
 import { fetchSources } from './src/flixhq/flixhq.js';
 import { VidSrcExtractor, VidSrcExtractor2  } from './src/vidsrcme/vidsrcme.js';
 
